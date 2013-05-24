@@ -3,7 +3,7 @@
     "type": "symfony-bundle",
     "description": "Add bad words validation based on blacklists",
     "keywords": ["bad", "words"],
-    "homepage": "http://github.com/",
+    "homepage": "https://github.com/aloffredo/ValidationBundle",
     "license": "MIT",
     "authors": [
         {
