@@ -6,12 +6,11 @@ This Symfony2 bundle includes bad words validation based on blacklists. The engl
 Installation
 ------------
 
-Use `Composer <https://github.com/composer/composer/>`_ to install: ``tuxone/validation-bundle``.
+Use Composer to install: ``tuxone/validation-bundle``.
 
 In your ``composer.json`` you should have:
 
-.. code-block:: yaml
-
+``` yaml
     {
         "require": {
             "tuxone/validation-bundle": "dev-master"
@@ -23,8 +22,7 @@ Usage
 
 Using validation.yml 
 
-.. code-block:: yaml
-
+``` yaml
 Acme\DemoBundle\Entity\Message:
   getters:
     text:
