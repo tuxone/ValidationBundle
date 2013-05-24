@@ -16,6 +16,7 @@ In your ``composer.json`` you should have:
             "tuxone/validation-bundle": "dev-master"
         }
     }
+```
 
 Usage
 ------------
@@ -27,3 +28,4 @@ Acme\DemoBundle\Entity\Message:
   getters:
     text:
       - TuxOne\ValidationBundle\Validator\Constraints\ContainsBadWords: ~
+```
