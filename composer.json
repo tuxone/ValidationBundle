@@ -1,23 +1,24 @@
 {
-    "name": "tuxone/validation-bundle",
-    "type": "symfony-bundle",
-    "description": "Add bad words validation based on blacklists",
-    "keywords": ["validation", "bad", "words"],
-    "homepage": "https://github.com/aloffredo/ValidationBundle",
-    "license": "MIT",
-    "authors": [
+    "name":         "tuxone/validation-bundle",
+    "version":      "1.0.0-dev",
+    "type":         "symfony-bundle",
+    "description":  "Validators for Symfony2",
+    "keywords":     ["validation", "bad", "words"],
+    "homepage":     "https://github.com/aloffredo/ValidationBundle",
+    "license":      "MIT",
+    "authors":      [
         {
             "name": "Alessandro Loffredo",
             "email": "cyberalexgm@gmail.com",
             "homepage": "http://alessandroloffredo.com"
         }
     ],
-    "require": {
-        "php": ">=5.3.3",
+    "require":      {
+        "php":                  ">=5.3.3",
         "symfony/validator":    "2.1.*"
     },
-    "autoload": {
+    "autoload":     {
         "psr-0": { "TuxOne\\ValidationBundle": "" }
     },
-    "target-dir": "TuxOne/ValidationBundle"
+    "target-dir":   "TuxOne/ValidationBundle"
 }
