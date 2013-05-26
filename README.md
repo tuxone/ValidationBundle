@@ -1,6 +1,8 @@
 ValidationBundle
 =============
 
+[![Travis](https://api.travis-ci.org/aloffredo/ValidationBundle.png?branch=master)](https://travis-ci.org/aloffredo/ValidationBundle)
+
 This Symfony2 bundle includes bad words validation based on blacklists. The english blacklist provided comes from [here](http://photos.ramseym.com/pictures/blog/badwords_for_facebook_pages.txt).
 
 Installation
