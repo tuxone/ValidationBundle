@@ -9,7 +9,7 @@ use Symfony\Component\Validator\Exception\UnexpectedTypeException;
 /**
  * @Annotation
  */
-class ContainsBadWordsValidator extends ConstraintValidator
+class NotContainsBadWordsValidator extends ConstraintValidator
 {
     public function validate($value, Constraint $constraint)
     {

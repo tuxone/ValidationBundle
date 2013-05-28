@@ -2,23 +2,21 @@
 
 namespace TuxOne\ValidatorBundle\Tests\Validator\Constraints;
 
-use TuxOne\ValidationBundle\Validator\Constraints\ContainsBadWords;
-use TuxOne\ValidationBundle\Validator\Constraints\ContainsBadWordsValidator;
-
-// This assumes that this class file is located at:
-// src/Application/AcmeBundle/Tests/ContainerAwareUnitTestCase.php
-// with Symfony 2.0 Standard Edition layout. You may need to change it
-// to fit your own file system mapping.
+use TuxOne\ValidationBundle\Validator\Constraints\NotContainsBadWords;
+use TuxOne\ValidationBundle\Validator\Constraints\NotContainsBadWordsValidator;
 
 class ContainsBadWordsValidatorTest extends \PHPUnit_Framework_TestCase
 {
+    const VALID_INPUT = 'Hello world!';
+    const NOT_VALID_INPUT = 'Hello pussy!';
+
     protected $context;
     protected $validator;
 
     protected function setUp()
     {
         $this->context = $this->getMock('Symfony\Component\Validator\ExecutionContext', array(), array(), '', false);
-        $this->validator = new ContainsBadWordsValidator();
+        $this->validator = new NotContainsBadWordsValidator();
         $this->validator->initialize($this->context);
     }
 
@@ -33,7 +31,7 @@ class ContainsBadWordsValidatorTest extends \PHPUnit_Framework_TestCase
         $this->context->expects($this->never())
             ->method('addViolation');
 
-        $this->validator->validate(null, new ContainsBadWords());
+        $this->validator->validate(null, new NotContainsBadWords());
     }
 
     public function testEmptyStringIsValid()
@@ -41,7 +39,7 @@ class ContainsBadWordsValidatorTest extends \PHPUnit_Framework_TestCase
         $this->context->expects($this->never())
             ->method('addViolation');
 
-        $this->validator->validate('', new ContainsBadWords());
+        $this->validator->validate('', new NotContainsBadWords());
     }
 
     public function testSampleStringIsValid()
@@ -49,7 +47,7 @@ class ContainsBadWordsValidatorTest extends \PHPUnit_Framework_TestCase
         $this->context->expects($this->never())
             ->method('addViolation');
 
-        $this->validator->validate('Hello world!', new ContainsBadWords());
+        $this->validator->validate(self::VALID_INPUT, new NotContainsBadWords());
     }
 
     public function testBadStringIsNotValid()
@@ -57,7 +55,7 @@ class ContainsBadWordsValidatorTest extends \PHPUnit_Framework_TestCase
         $this->context->expects($this->once())
             ->method('addViolation');
 
-        $this->validator->validate('Hello pussy!', new ContainsBadWords());
+        $this->validator->validate(self::NOT_VALID_INPUT, new NotContainsBadWords());
     }
 
     /**
@@ -65,6 +63,6 @@ class ContainsBadWordsValidatorTest extends \PHPUnit_Framework_TestCase
      */
     public function testExpectsStringCompatibleType()
     {
-        $this->validator->validate(new \stdClass(), new ContainsBadWords());
+        $this->validator->validate(new \stdClass(), new NotContainsBadWords());
     }
 }

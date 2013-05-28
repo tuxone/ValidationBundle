@@ -7,7 +7,7 @@ use Symfony\Component\Validator\Constraint;
 /**
  * @Annotation
  */
-class ContainsBadWords extends Constraint
+class NotContainsBadWords extends Constraint
 {
     public $message = "The message contains an illegal word: '%string%'";
 }

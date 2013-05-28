@@ -31,7 +31,7 @@ If **TuxOneValidationBundle** has been added to the project, its validators can 
 	Acme\DemoBundle\Entity\AcmeMessage:
 	  properties:
 	    text:
-	      - TuxOne\ValidationBundle\Validator\Constraints\ContainsBadWords: ~
+	      - TuxOne\ValidationBundle\Validator\Constraints\NotContainsBadWords: ~
 
 ### Using with Annotations
 
@@ -45,7 +45,7 @@ If **TuxOneValidationBundle** has been added to the project, its validators can 
 
 		/**
 		 * @Assert\NotBlank
-		 * @TuxOneAssert\ContainsBadWords()
+		 * @TuxOneAssert\NotContainsBadWords()
 		 */
 		protected $text;
 
