@@ -24,12 +24,12 @@ class NotContainsBadWordsValidator extends ConstraintValidator
         $stringValue = (string) $value;
 
         // Load blacklist
-        $blacklist = file(__DIR__."/../../Dictionaries/list_en.txt", FILE_IGNORE_NEW_LINES);
+        $blacklist = $this->getBlackListArray();
 
-        // split value
-        $words = $this->getWords($stringValue);
+        // Split input value into words
+        $words = $this->getWordsArray($stringValue);
 
-        // search for bad words in value
+        // Search for bad words
         $match = array_intersect($words, $blacklist);
 
         if (count($match)>0) {
@@ -37,7 +37,11 @@ class NotContainsBadWordsValidator extends ConstraintValidator
         }
     }
 
-    private function getWords($text)
+    private function getBlackListArray() {
+        return file(__DIR__."/../../Dictionaries/list.txt", FILE_IGNORE_NEW_LINES);
+    }
+
+    private function getWordsArray($text)
     {
         $text = strtolower($text);
         $text = preg_replace("/[^a-z0-9 ]/", ' ', $text);
