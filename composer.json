@@ -4,7 +4,7 @@
     "type":         "symfony-bundle",
     "description":  "Validators for Symfony2",
     "keywords":     ["validation", "bad", "words"],
-    "homepage":     "https://github.com/aloffredo/ValidationBundle",
+    "homepage":     "https://github.com/tuxone/ValidationBundle",
     "license":      "MIT",
     "authors":      [
         {
