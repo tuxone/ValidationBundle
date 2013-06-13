@@ -32,7 +32,7 @@ class NotContainsBadWordsValidator extends ConstraintValidator
         // Search for bad words
         $match = array_intersect($words, $blacklist);
 
-        if (count($match)>0) {
+        if ( count($match) > 0 ) {
             $this->context->addViolation($constraint->message, array('%string%' => reset($match)));
         }
     }
