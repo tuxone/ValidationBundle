@@ -8,7 +8,7 @@ Right now this Symfony2 bundle includes only bad words validation based on black
 Installation
 ------------
 
-Use Composer to install: ``tuxone/validation-bundle``.
+Use Composer to install: ``tuxone/validation-bundle``
 
 In your ``composer.json`` you should have:
 
