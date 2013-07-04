@@ -11,6 +11,14 @@ use Symfony\Component\Validator\Exception\UnexpectedTypeException;
  */
 class NotContainsBadWordsValidator extends ConstraintValidator
 {
+    private $dictionaryPath;
+
+    public function __construct($dictionaryPath)
+    {
+        $this->dictionaryPath = $dictionaryPath;
+        
+    }
+
     public function validate($value, Constraint $constraint)
     {
         if (null === $value || '' === $value) {
@@ -37,8 +45,9 @@ class NotContainsBadWordsValidator extends ConstraintValidator
         }
     }
 
-    private function getBlackListArray() {
-        return file(__DIR__."/../../Dictionaries/list.txt", FILE_IGNORE_NEW_LINES);
+    private function getBlackListArray()
+    {
+        return file($this->dictionaryPath, FILE_IGNORE_NEW_LINES);
     }
 
     private function getWordsArray($text)

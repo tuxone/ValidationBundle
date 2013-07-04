@@ -10,4 +10,10 @@ use Symfony\Component\Validator\Constraint;
 class NotContainsBadWords extends Constraint
 {
     public $message = "The message contains an illegal word: '%string%'";
+
+    public function validatedBy()
+    {
+        return 'tuxone_badword_validation';
+
+    }
 }

@@ -1,0 +1,6 @@
+services:
+    tuxone_validation:
+         class: TuxOne\ValidationBundle\Validator\Constraints\NotContainsBadWordsValidator
+         arguments: [%validation_bundle.dictionary_file%]
+         tags:
+             - { name: validator.constraint_validator, alias: tuxone_badword_validation }
