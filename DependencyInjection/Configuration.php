@@ -11,8 +11,8 @@ class Configuration implements ConfigurationInterface
     public function getConfigTreeBuilder()
     {
         $treeBuilder = new TreeBuilder();
-        $treeBuilder->root('tuxone_validation');
-
+        $rootNode =  $treeBuilder->root('tuxone_validation')->children();
+        $rootNode->scalarNode('dictionary_file')->defaultValue(__DIR__."/../Dictionaries/list.txt")->end();
         return $treeBuilder;
     }
 }

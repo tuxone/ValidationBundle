@@ -26,11 +26,11 @@ Configuration
 ### In config.yml
 
     tux_one_validation:
-        dictionaryPath: /home/erlangb/Scrivania/mybadword.txt
+        dictionaryPath: /path/to/custom/dictionary.txt
 
-"mybadword.txt" is a custom dictionary that contains a list of bad word.
-This configuration is optionally. If setted, the bundle works with you custom bad word list,
-otherwise it will work with the default bad word list
+"dictionary.txt" is a custom dictionary that contains a list of bad word.
+This configuration is optionally. If setted, the bundle works with your custom bad word list,
+otherwise it will work with the default bad word list.
 
 
 Usage
