@@ -16,7 +16,7 @@ class ContainsBadWordsValidatorTest extends \PHPUnit_Framework_TestCase
     protected function setUp()
     {
         $this->context = $this->getMock('Symfony\Component\Validator\ExecutionContext', array(), array(), '', false);
-        $this->validator = new NotContainsBadWordsValidator();
+        $this->validator = new NotContainsBadWordsValidator(__DIR__."/../../../Dictionaries/list.txt");
         $this->validator->initialize($this->context);
     }
 
@@ -42,20 +42,46 @@ class ContainsBadWordsValidatorTest extends \PHPUnit_Framework_TestCase
         $this->validator->validate('', new NotContainsBadWords());
     }
 
-    public function testSampleStringIsValid()
+    /**
+     * @dataProvider getValidStringInput
+     */
+    public function testSampleStringIsValid($validInput)
     {
         $this->context->expects($this->never())
             ->method('addViolation');
 
-        $this->validator->validate(self::VALID_INPUT, new NotContainsBadWords());
+        $this->validator->validate($validInput, new NotContainsBadWords());
     }
 
-    public function testBadStringIsNotValid()
+    /**
+     * @dataProvider getNotValidStringInput
+     */
+    public function testBadStringIsNotValid($notValidInput)
     {
         $this->context->expects($this->once())
             ->method('addViolation');
 
-        $this->validator->validate(self::NOT_VALID_INPUT, new NotContainsBadWords());
+        $this->validator->validate($notValidInput, new NotContainsBadWords());
+    }
+
+    public function getNotValidStringInput()
+    {
+        return array(
+            array('Hello Pussy'),
+            array('Pussy hello'),
+            array('Shit pussy'),
+            array('Hi shit'),
+        );
+    }
+
+    public function getValidStringInput()
+    {
+        return array(
+            array('Hello Passy'),
+            array('hi shot'),
+            array('Shot this'),
+            array('This drink is awesome'),
+        );
     }
 
     /**

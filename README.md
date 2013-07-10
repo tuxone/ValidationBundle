@@ -20,8 +20,22 @@ In your ``composer.json`` you should have:
     }
 ```
 
+Configuration
+------------
+
+### In config.yml
+
+    tux_one_validation:
+        dictionaryPath: /path/to/custom/dictionary.txt
+
+"dictionary.txt" is a custom dictionary that contains a list of bad word.
+This configuration is optionally. If setted, the bundle works with your custom bad word list,
+otherwise it will work with the default bad word list.
+
+
 Usage
 ------------
+
 
 If **TuxOneValidationBundle** has been added to the project, its validators can be used just like every other Symfony2 validator.
 

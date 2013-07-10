@@ -15,7 +15,10 @@
     ],
     "require":      {
         "php":                  ">=5.3.3",
-        "symfony/validator":    ">=2.1"
+        "symfony/validator":    ">=2.1",
+        "symfony/yaml": "~2.0",
+        "symfony/config": "~2.2",
+        "symfony/dependency-injection": "dev-master"
     },
     "autoload":     {
         "psr-0": { "TuxOne\\ValidationBundle": "" }
