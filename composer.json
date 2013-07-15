@@ -17,8 +17,7 @@
         "php":                  ">=5.3.3",
         "symfony/validator":    ">=2.1",
         "symfony/yaml": "~2.0",
-        "symfony/config": "~2.2",
-        "symfony/dependency-injection": "dev-master"
+        "symfony/config": "~2.2"
     },
     "autoload":     {
         "psr-0": { "TuxOne\\ValidationBundle": "" }
