@@ -40,14 +40,14 @@ class NotContainsBadWordsValidator extends ConstraintValidator
         // Search for bad words
         $match = array_intersect($words, $blacklist);
 
-        if (count($match)>0) {
+        if ( count($match) > 0 ) {
             $this->context->addViolation($constraint->message, array('%string%' => reset($match)));
         }
     }
 
     private function getBlackListArray()
     {
-        return file($this->dictionaryPath, FILE_IGNORE_NEW_LINES);
+        return file(__DIR__."/../../Dictionaries/list.txt", FILE_IGNORE_NEW_LINES);
     }
 
     private function getWordsArray($text)
