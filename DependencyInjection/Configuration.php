@@ -12,7 +12,7 @@ class Configuration implements ConfigurationInterface
     {
         $treeBuilder = new TreeBuilder();
         $rootNode =  $treeBuilder->root('tuxone_validation')->children();
-        $rootNode->scalarNode('dictionary_file')->defaultValue(__DIR__."/../Dictionaries/list.txt")->end();
+        $rootNode->scalarNode('dictionary_file_path')->defaultValue(__DIR__."/../Dictionaries/list.txt")->end();
         return $treeBuilder;
     }
 }

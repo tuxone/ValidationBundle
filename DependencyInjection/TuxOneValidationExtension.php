@@ -16,7 +16,7 @@ class TuxOneValidationExtension extends Extension
         }
 
 
-        $container->setParameter('validation_bundle.dictionary_file', $config['dictionaryPath']);
+        $container->setParameter('validation_bundle.dictionary_file', $config['dictionary_file_path']);
 
         $loader = new Loader\YamlFileLoader($container, new FileLocator(__DIR__.'/../Resources/config'));
         $loader->load('services.yml');
