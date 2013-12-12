@@ -47,7 +47,7 @@ class NotContainsBadWordsValidator extends ConstraintValidator
 
     private function getBlackListArray()
     {
-        return file(__DIR__."/../../Dictionaries/list.txt", FILE_IGNORE_NEW_LINES);
+        return file($this->dictionaryPath, FILE_IGNORE_NEW_LINES);
     }
 
     private function getWordsArray($text)
