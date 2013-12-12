@@ -26,7 +26,7 @@ Configuration
 ### In config.yml
 
     tux_one_validation:
-        dictionaryPath: /path/to/custom/dictionary.txt
+        dictionary_file_path: /path/to/custom/dictionary.txt
 
 "dictionary.txt" is a custom dictionary that contains a list of bad word.
 This configuration is optionally. If setted, the bundle works with your custom bad word list,
