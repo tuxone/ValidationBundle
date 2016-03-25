@@ -41,7 +41,10 @@ class NotContainsBadWordsValidator extends ConstraintValidator
         $match = array_intersect($words, $blacklist);
 
         if ( count($match) > 0 ) {
-            $this->context->addViolation($constraint->message, array('%string%' => reset($match)));
+            $this->context->buildViolation($constraint->message)
+                ->setParameter('{{ word }}', reset($match))
+                ->setCode(NotContainsBadWords::CONTAINS_BAD_WORD)
+                ->addViolation();
         }
     }
 
