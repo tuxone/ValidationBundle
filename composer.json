@@ -22,5 +22,8 @@
     "autoload":     {
         "psr-0": { "TuxOne\\ValidationBundle": "" }
     },
-    "target-dir":   "TuxOne/ValidationBundle"
+    "target-dir":   "TuxOne/ValidationBundle",
+    "require-dev": {
+        "symfony/phpunit-bridge": "^3.1"
+    }
 }
