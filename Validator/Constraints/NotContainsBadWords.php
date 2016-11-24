@@ -16,6 +16,5 @@ class NotContainsBadWords extends Constraint
     public function validatedBy()
     {
         return 'tuxone_badword_validation';
-
     }
 }
