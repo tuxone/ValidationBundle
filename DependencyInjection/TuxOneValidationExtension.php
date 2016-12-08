@@ -15,13 +15,8 @@ class TuxOneValidationExtension extends Extension
         foreach ($configs as $subConfig) {
             $config = array_merge($config, $subConfig);
         }
-
-
         $container->setParameter('validation_bundle.dictionary_file', $config['dictionary_file_path']);
-
         $loader = new Loader\YamlFileLoader($container, new FileLocator(__DIR__.'/../Resources/config'));
         $loader->load('services.yml');
-
-
     }
 }

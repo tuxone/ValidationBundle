@@ -5,19 +5,14 @@ namespace TuxOne\ValidatorBundle\Tests\Validator\Constraints;
 use TuxOne\ValidationBundle\Validator\Constraints\NotContainsBadWords;
 use TuxOne\ValidationBundle\Validator\Constraints\NotContainsBadWordsValidator;
 
-class ContainsBadWordsValidatorTest extends \PHPUnit_Framework_TestCase
+class ContainsBadWordsValidatorTest extends AbstractConstraintValidatorTest
 {
     const VALID_INPUT = 'Hello world!';
     const NOT_VALID_INPUT = 'Hello pussy!';
 
-    protected $context;
-    protected $validator;
-
-    protected function setUp()
+    protected function createValidator()
     {
-        $this->context = $this->getMock('Symfony\Component\Validator\ExecutionContext', array(), array(), '', false);
-        $this->validator = new NotContainsBadWordsValidator(__DIR__."/../../../Dictionaries/list.txt");
-        $this->validator->initialize($this->context);
+        return new NotContainsBadWordsValidator(__DIR__."/../../../Dictionaries/list.txt");
     }
 
     protected function tearDown()
@@ -28,17 +23,11 @@ class ContainsBadWordsValidatorTest extends \PHPUnit_Framework_TestCase
 
     public function testNullIsValid()
     {
-        $this->context->expects($this->never())
-            ->method('addViolation');
-
         $this->validator->validate(null, new NotContainsBadWords());
     }
 
     public function testEmptyStringIsValid()
     {
-        $this->context->expects($this->never())
-            ->method('addViolation');
-
         $this->validator->validate('', new NotContainsBadWords());
     }
 
@@ -47,9 +36,6 @@ class ContainsBadWordsValidatorTest extends \PHPUnit_Framework_TestCase
      */
     public function testSampleStringIsValid($validInput)
     {
-        $this->context->expects($this->never())
-            ->method('addViolation');
-
         $this->validator->validate($validInput, new NotContainsBadWords());
     }
 
@@ -58,9 +44,6 @@ class ContainsBadWordsValidatorTest extends \PHPUnit_Framework_TestCase
      */
     public function testBadStringIsNotValid($notValidInput)
     {
-        $this->context->expects($this->once())
-            ->method('addViolation');
-
         $this->validator->validate($notValidInput, new NotContainsBadWords());
     }
 
