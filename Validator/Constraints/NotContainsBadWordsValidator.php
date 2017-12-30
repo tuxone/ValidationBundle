@@ -12,11 +12,13 @@ use Symfony\Component\Validator\Exception\UnexpectedTypeException;
 class NotContainsBadWordsValidator extends ConstraintValidator
 {
     private $dictionaryPath;
+    private $useWildcard;
 
-    public function __construct($dictionaryPath)
+    public function __construct($dictionaryPath, $useWildcard)
     {
         $this->dictionaryPath = $dictionaryPath;
-        
+        $this->useWildcard    = $useWildcard;
+
     }
 
     public function validate($value, Constraint $constraint)
@@ -25,26 +27,38 @@ class NotContainsBadWordsValidator extends ConstraintValidator
             return;
         }
 
-        if (!is_scalar($value) && !(is_object($value) && method_exists($value, '__toString'))) {
+        if ( ! is_scalar($value) && ! (is_object($value) && method_exists($value, '__toString'))) {
             throw new UnexpectedTypeException($value, 'string');
         }
 
-        $stringValue = (string) $value;
+        $stringValue = (string)$value;
 
         // Load blacklist
         $blacklist = $this->getBlackListArray();
 
-        // Split input value into words
-        $words = $this->getWordsArray($stringValue);
+        if ($this->useWildcard) {
+            foreach ($blacklist as $word) {
+                if (stripos($stringValue, $word) !== false) {
+                    $this->context->buildViolation($constraint->message)
+                                  ->setParameter('{{ word }}', $word)
+                                  ->setCode(NotContainsBadWords::CONTAINS_BAD_WORD)
+                                  ->addViolation();
+                    break;
+                }
+            }
+        } else {
+            // Split input value into words
+            $words = $this->getWordsArray($stringValue);
 
-        // Search for bad words
-        $match = array_intersect($words, $blacklist);
+            // Search for bad words
+            $match = array_intersect($words, $blacklist);
 
-        if ( count($match) > 0 ) {
-            $this->context->buildViolation($constraint->message)
-                ->setParameter('{{ word }}', reset($match))
-                ->setCode(NotContainsBadWords::CONTAINS_BAD_WORD)
-                ->addViolation();
+            if (count($match) > 0) {
+                $this->context->buildViolation($constraint->message)
+                              ->setParameter('{{ word }}', reset($match))
+                              ->setCode(NotContainsBadWords::CONTAINS_BAD_WORD)
+                              ->addViolation();
+            }
         }
     }
 
@@ -55,10 +69,11 @@ class NotContainsBadWordsValidator extends ConstraintValidator
 
     private function getWordsArray($text)
     {
-        $text = strtolower($text);
-        $text = preg_replace("/[^a-z0-9 ]/", ' ', $text);
+        $text  = strtolower($text);
+        $text  = preg_replace("/[^a-z0-9 ]/", ' ', $text);
         $words = explode(' ', $text);
         $words = array_unique($words);
+
         return $words;
     }
 }

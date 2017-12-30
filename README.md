@@ -27,11 +27,14 @@ Configuration
 
     tux_one_validation:
         dictionary_file_path: /path/to/custom/dictionary.txt
+        use_wildcard: false
 
 "dictionary.txt" is a custom dictionary that contains a list of bad word.
 This configuration is optionally. If setted, the bundle works with your custom bad word list,
 otherwise it will work with the default bad word list.
 
+
+You can also use the "is_wildcard" option to also search for in-word occurrences. This may slow down the validation a bit.
 
 Usage
 ------------
